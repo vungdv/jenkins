@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Compile") {
             steps {
-                sh "./gradlew compileJava"
+                sh "./gradlew compileJava --status"
             }
         }       
         stage("Unit test") {
