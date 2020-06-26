@@ -1,4 +1,8 @@
 pipeline {
+    environment {
+        registry = "vungdv/calculator"
+        registryCredential = "dockerhub"
+    }
     agent any
     stages {
         stage("Compile") {
