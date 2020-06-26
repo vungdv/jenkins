@@ -26,5 +26,20 @@ pipeline {
                 sh "./gradlew checkstyleMain"
             }
         }
+        stage("Package") {
+            steps {
+                sh "./gradlew build"
+            }
+        }
+        stage("Docker build") {
+            steps {
+                sh "docker build -t vungdv/calculator ."
+            }
+        }
+        stage("Docker push") {
+            steps {
+               sh "docker push vungdv/calculator"
+            }
+        }
     }
 }
