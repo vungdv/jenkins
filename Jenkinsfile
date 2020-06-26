@@ -1,8 +1,4 @@
 pipeline {
-    environment {
-        registry = "vungdv/calculator"
-        registryCredential = "dockerhub"
-    }
     agent any
     stages {
         stage("Compile") {
@@ -42,7 +38,12 @@ pipeline {
             }
         }
         stage("Docker push") {
+            environment {
+                docker_usr = credentials("dockerhub-username")
+                docker_psw = credentials("dockerhub-pass")
+            }
             steps {
+               sh 'docker login -u $docker_usr -p $docker_psw'
                sh "docker push vungdv/calculator"
             }
         }
