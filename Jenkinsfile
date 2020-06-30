@@ -55,6 +55,7 @@ pipeline {
         stage("Acceptance test") {
             steps {
                 sleep 5
+                sh "docker-compose ps"
                 sh "chmod +x ./acceptance_test.sh"
                 sh "./acceptance_test.sh"
             }
